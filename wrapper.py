@@ -1,3 +1,5 @@
+#pip install grpcio
+#pip install grpcio-tools
 import signal
 import threading
 from concurrent import futures
@@ -30,4 +32,34 @@ class RPCDemo(rpc_demo_pb2_grpc,RPCDemoServicer):
         results.values.append(self.data[1])
         results.values.append(self.data[2])
         return results
+    
+    def terminate_server(signum, frame):
+        print("Got signal {}, {}".format(signum,frame))
+        rospy.signal_shutdown("Ending ROS Node")
+        terminate.set()
+
+    if __name__ == "__main__":
+        print("---ROS GRCP Wrapper--")
+        signal.signal(signal.SIGINT, terminate_server)
+
+        print("Starting ROS Node")
+        rospy.init_node('object_position_wrapper', anonymous=True)
+
+        print("Starting GRPC server")
+        server_addr = "[::]:7042"
+        service = RCPDemoImpl()
+        server = grcp.server(futures.ThreadPoolExecutor(max_workers=10))
+        rpc_demo_pb2_grpc.add_RPCDemoServicer_to_server(service, server)
+        server.add_insecure_port(server_addr)
+        server.start()
+        print("grpc Server listening on" + server_addr)
+
+        print("Running ROS Node")
+        rospy.spin()
+
+        terminate.wait()
+        print("Stopping GRPC Server")
+        server.stop(1).wait(
+            print("Exited")
+        )
 

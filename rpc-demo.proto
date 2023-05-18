@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+import "google/protobuf/empty.proto";
+package RPCDemoPkg;
+
+service RPCDemo{
+    rpc getMultCoords(google.protobuf.Empty) returns (MultCoords){
+    };
+}
+
+message MultCoords{
+    repeated double values = 1 [packed=true];
+}
