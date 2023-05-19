@@ -1,20 +1,21 @@
 #!/usr/bin/env python
 import rospy
 from sensor_msgs.msg import Image
+from std_msgs.msg import Float64MultiArray
+
 from cv_bridge import CvBridge, CvBridgeError
 import cv2
 import ctypes
 from time import time 
 import numpy as np
-from std_msgs.msg import Float64MultiArray
 
 so="../CPP-LIN-Linux/src/cpp_lib_demo.so"
 
 class GreenDetector:
     def __init__(self):
         rospy.init_node('green_detector', anonymous=True)
-        pub=rospy.Publisher('/green_detector',Float64MultiArray,queue_size=10)
-        rate=rospy.rate(100)
+        pub = rospy.Publisher('/green_detector',Float64MultiArray,queue_size=10)
+        rate = rospy.rate(100)
 
         self.bridge = CvBridge()
         self.image_sub = rospy.Subscriber('/camera/rgb/image_raw', Image, self.image_callback)
@@ -60,5 +61,5 @@ if __name__ == '__main__':
     try:
         rospy.spin()
     except KeyboardInterrupt:
-        print("Apagando green_detector")
+        print("Apagando green_detector...")
     cv2.destroyAllWindows()
