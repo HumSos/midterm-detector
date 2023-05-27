@@ -7,7 +7,7 @@ project(pycam)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS cv_bridge aruco_ros roscpp rospy std_msgs image_transport)
+find_package(catkin REQUIRED COMPONENTS cv_bridge roscpp rospy std_msgs image_transport)
 find_package(OpenCV 4 REQUIRED)
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
