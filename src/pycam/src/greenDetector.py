@@ -9,7 +9,7 @@ import ctypes
 from time import time 
 import numpy as np
 
-so="../CPP-LIN-Linux/src/cpp_lib_demo.so"
+so="../Midtermv2/src/pycam/src/cpp_lib_demo.so"
 
 class GreenDetector:
     def __init__(self):

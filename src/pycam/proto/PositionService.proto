@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package object_position;
+message Empty {
+}
+// The response message containing the greetings
+message Position {
+  double x = 1;
+  double y = 2;
+  int64 timestamp = 3; // timestamp as UNIX epoch time
+}
+
+// The service definition.
+service PositionService {
+  // Sends a greeting
+  rpc SendPosition (Empty) returns (Position);
+}

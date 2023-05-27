@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="pycam" type="enable_camera" name="enable_camera"/>    
+    <node pkg="pycam" type="grpc_wrapper.py" name="grpc_wrapper"/>    
+</launch>
