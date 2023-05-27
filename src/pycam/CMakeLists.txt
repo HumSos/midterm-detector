@@ -120,7 +120,7 @@ include_directories(
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-   include/${PROJECT_NAME}/multiply.cpp
+#   include/${PROJECT_NAME}/multiply.cpp
 # )
 
 ## Add cmake target dependencies of the library
